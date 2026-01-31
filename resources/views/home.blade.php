@@ -128,6 +128,116 @@
             box-shadow: 0 10px 25px rgba(77, 68, 181, 0.3);
         }
         
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+            gap: 5px;
+        }
+        
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--text-dark);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+        
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+        
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+        
+        /* Mobile Menu */
+        @media (max-width: 968px) {
+            .menu-toggle {
+                display: flex;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                background: white;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 5rem 2rem 2rem;
+                box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+                transition: right 0.3s ease;
+                gap: 0;
+                z-index: 1000;
+                overflow-y: auto;
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-links a {
+                width: 100%;
+                padding: 1rem 0;
+                border-bottom: 1px solid #e2e8f0;
+                font-size: 1.125rem;
+            }
+            
+            .nav-links a:last-child {
+                border-bottom: none;
+                margin-top: 1rem;
+            }
+            
+            .btn-register {
+                width: 100%;
+                text-align: center;
+                padding: 1rem;
+            }
+            
+            .nav-overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 999;
+            }
+            
+            .nav-overlay.active {
+                display: block;
+            }
+        }
+        
+        @media (max-width: 640px) {
+            .nav-container {
+                padding: 0 1rem;
+            }
+            
+            .logo {
+                font-size: 1.25rem;
+            }
+            
+            .logo img {
+                height: 32px;
+            }
+            
+            .nav-links {
+                width: 100%;
+                right: -100%;
+            }
+        }
+        
         /* Hero Section */
         .hero {
             margin-top: 80px;
@@ -513,12 +623,18 @@
                 <i class="fas fa-credit-card logo-fallback"></i>
                 <span>MikPay</span>
             </a>
-            <div class="nav-links">
-                <a href="#features">Fitur</a>
-                <a href="#gallery">Galeri</a>
-                <a href="#pricing">Harga</a>
-                <a href="#contact">Kontak</a>
-                <a href="{{ route('registrasi') }}" class="btn-register">
+            <div class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="nav-overlay" id="navOverlay"></div>
+            <div class="nav-links" id="navLinks">
+                <a href="#features" onclick="closeMobileMenu()">Fitur</a>
+                <a href="#gallery" onclick="closeMobileMenu()">Galeri</a>
+                <a href="#pricing" onclick="closeMobileMenu()">Harga</a>
+                <a href="#contact" onclick="closeMobileMenu()">Kontak</a>
+                <a href="{{ route('registrasi') }}" class="btn-register" onclick="closeMobileMenu()">
                     <i class="fas fa-user-plus"></i> Daftar Sekarang
                 </a>
             </div>
@@ -896,17 +1012,56 @@
         </div>
     </footer>
 
-    <!-- Smooth Scroll -->
+    <!-- Smooth Scroll & Mobile Menu -->
     <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+        const navOverlay = document.getElementById('navOverlay');
+        
+        function toggleMobileMenu() {
+            menuToggle.classList.toggle('active');
+            navLinks.classList.toggle('active');
+            navOverlay.classList.toggle('active');
+            document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+        }
+        
+        function closeMobileMenu() {
+            menuToggle.classList.remove('active');
+            navLinks.classList.remove('active');
+            navOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        menuToggle.addEventListener('click', toggleMobileMenu);
+        navOverlay.addEventListener('click', closeMobileMenu);
+        
+        // Close menu on window resize (if resized to desktop)
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 968) {
+                closeMobileMenu();
+            }
+        });
+        
+        // Smooth Scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
+                const target = document.querySelector(href);
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
+                    const offset = 80; // Navbar height
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
                     });
+                    
+                    // Close mobile menu after click
+                    closeMobileMenu();
                 }
             });
         });
