@@ -22,7 +22,7 @@ class User extends Authenticatable
         'email',
         'password',
         'subdomain',
-        'voucher_code',
+        'package',
         'role',
         'status',
         'phone',

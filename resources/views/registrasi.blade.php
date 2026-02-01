@@ -288,7 +288,7 @@
                     <li>Setelah periode tertentu, Anda harus berlangganan paket berbayar untuk melanjutkan</li>
                     <li>Pembayaran dilakukan sesuai dengan paket yang dipilih</li>
                     <li>Tidak ada pengembalian dana untuk pembayaran yang sudah dilakukan</li>
-                    <li>Voucher dapat digunakan untuk mendapatkan diskon atau paket khusus</li>
+                    <li>Pilih paket sesuai kebutuhan bisnis Anda saat registrasi</li>
                 </ul>
                 
                 <h4>5. Data dan Privasi</h4>
@@ -379,12 +379,37 @@
                     </div>
                     
                     <div class="form-group">
-                        <label for="voucher_code">Kode Voucher (Opsional)</label>
-                        <input type="text" id="voucher_code" name="voucher_code" value="{{ old('voucher_code') }}" placeholder="Masukkan kode voucher jika ada">
-                        <small style="color: #64748b; font-size: 0.875rem; display: block; margin-top: 0.25rem;">
-                            Gunakan kode voucher untuk mendapatkan diskon atau paket khusus
-                        </small>
-                        @error('voucher_code')
+                        <label for="package">Pilih Paket <span style="color: #ef4444;">*</span></label>
+                        <div style="display: grid; gap: 1rem; margin-top: 0.5rem;">
+                            <label style="display: flex; align-items: center; gap: 0.75rem; padding: 1rem; border: 2px solid #e2e8f0; border-radius: 8px; cursor: pointer; transition: all 0.3s;" 
+                                   onmouseover="this.style.borderColor='#4D44B5'; this.style.background='#f8fafc';" 
+                                   onmouseout="this.style.borderColor='#e2e8f0'; this.style.background='white';">
+                                <input type="radio" name="package" value="basic" id="package_basic" {{ old('package') == 'basic' ? 'checked' : '' }} required style="width: 20px; height: 20px; cursor: pointer;">
+                                <div style="flex: 1;">
+                                    <div style="font-weight: 600; color: #1e293b;">Paket Basic</div>
+                                    <div style="font-size: 0.875rem; color: #64748b;">Fitur dasar untuk bisnis kecil</div>
+                                </div>
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.75rem; padding: 1rem; border: 2px solid #e2e8f0; border-radius: 8px; cursor: pointer; transition: all 0.3s;" 
+                                   onmouseover="this.style.borderColor='#4D44B5'; this.style.background='#f8fafc';" 
+                                   onmouseout="this.style.borderColor='#e2e8f0'; this.style.background='white';">
+                                <input type="radio" name="package" value="premium" id="package_premium" {{ old('package') == 'premium' ? 'checked' : '' }} required style="width: 20px; height: 20px; cursor: pointer;">
+                                <div style="flex: 1;">
+                                    <div style="font-weight: 600; color: #1e293b;">Paket Premium</div>
+                                    <div style="font-size: 0.875rem; color: #64748b;">Fitur lengkap untuk bisnis menengah</div>
+                                </div>
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 0.75rem; padding: 1rem; border: 2px solid #e2e8f0; border-radius: 8px; cursor: pointer; transition: all 0.3s;" 
+                                   onmouseover="this.style.borderColor='#4D44B5'; this.style.background='#f8fafc';" 
+                                   onmouseout="this.style.borderColor='#e2e8f0'; this.style.background='white';">
+                                <input type="radio" name="package" value="enterprise" id="package_enterprise" {{ old('package') == 'enterprise' ? 'checked' : '' }} required style="width: 20px; height: 20px; cursor: pointer;">
+                                <div style="flex: 1;">
+                                    <div style="font-weight: 600; color: #1e293b;">Paket Enterprise</div>
+                                    <div style="font-size: 0.875rem; color: #64748b;">Fitur premium untuk bisnis besar</div>
+                                </div>
+                            </label>
+                        </div>
+                        @error('package')
                             <div class="error-message">{{ $message }}</div>
                         @enderror
                     </div>
