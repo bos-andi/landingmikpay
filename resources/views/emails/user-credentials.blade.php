@@ -110,6 +110,12 @@
                 <div class="credential-value">{{ $user->subdomain }}.mikpay.link</div>
             </div>
             @endif
+            @if($user->package)
+            <div class="credential-item">
+                <div class="credential-label">Paket yang Dipilih:</div>
+                <div class="credential-value" style="text-transform: capitalize;">{{ ucfirst($user->package) }}</div>
+            </div>
+            @endif
         </div>
         
         <div class="warning">
