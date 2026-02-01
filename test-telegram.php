@@ -15,6 +15,7 @@ $app->make(\Illuminate\Contracts\Console\Kernel::class)->bootstrap();
 
 use App\Services\TelegramService;
 use App\Models\User;
+use Illuminate\Support\Facades\Http;
 
 echo "=== Test Telegram Bot MikPay ===\n\n";
 
@@ -38,13 +39,50 @@ if (empty($botToken) || empty($chatId)) {
     exit(1);
 }
 
+// Validasi format bot token
+if (!preg_match('/^\d+:[A-Za-z0-9_-]+$/', $botToken)) {
+    echo "❌ ERROR: Format Bot Token tidak valid!\n";
+    echo "Format yang benar: 123456789:ABCdefGHIjklMNOpqrsTUVwxyz\n";
+    exit(1);
+}
+
+// Test koneksi ke Telegram API
+echo "Testing koneksi ke Telegram API...\n";
+try {
+    $testUrl = "https://api.telegram.org/bot{$botToken}/getMe";
+    $response = Http::timeout(10)->get($testUrl);
+    
+    if ($response->successful()) {
+        $data = $response->json();
+        if (isset($data['ok']) && $data['ok'] === true) {
+            echo "✅ Bot Token valid!\n";
+            echo "   Bot Name: " . ($data['result']['first_name'] ?? 'N/A') . "\n";
+            echo "   Bot Username: @" . ($data['result']['username'] ?? 'N/A') . "\n\n";
+        } else {
+            echo "❌ Bot Token tidak valid atau bot tidak ditemukan!\n";
+            echo "   Response: " . $response->body() . "\n";
+            exit(1);
+        }
+    } else {
+        echo "❌ Gagal mengakses Telegram API!\n";
+        echo "   Status Code: " . $response->status() . "\n";
+        echo "   Response: " . $response->body() . "\n";
+        exit(1);
+    }
+} catch (\Exception $e) {
+    echo "❌ Error koneksi ke Telegram API: " . $e->getMessage() . "\n";
+    echo "   Pastikan VPS bisa akses internet dan tidak diblokir firewall.\n";
+    exit(1);
+}
+
 // Test kirim pesan sederhana
 echo "Mengirim pesan test...\n";
 $telegramService = new TelegramService();
 
 $testMessage = "🧪 <b>Test Telegram Bot</b>\n\n";
 $testMessage .= "Ini adalah pesan test dari MikPay.\n";
-$testMessage .= "Jika Anda menerima pesan ini, berarti konfigurasi sudah benar! ✅";
+$testMessage .= "Jika Anda menerima pesan ini, berarti konfigurasi sudah benar! ✅\n\n";
+$testMessage .= "Waktu: " . date('d/m/Y H:i:s');
 
 $result = $telegramService->sendMessage($testMessage);
 
@@ -53,7 +91,11 @@ if ($result) {
     echo "📱 Cek Telegram Anda sekarang.\n\n";
 } else {
     echo "❌ Gagal mengirim pesan test.\n";
-    echo "Cek log: storage/logs/laravel.log\n";
+    echo "\nTroubleshooting:\n";
+    echo "1. Pastikan bot sudah di-start (kirim /start ke bot)\n";
+    echo "2. Untuk group, pastikan bot sudah di-add ke group\n";
+    echo "3. Cek Chat ID sudah benar (bisa negatif untuk group)\n";
+    echo "4. Cek log: tail -f storage/logs/laravel.log\n";
     exit(1);
 }
 
@@ -68,9 +110,11 @@ if ($user) {
         echo "✅ Notifikasi registrasi berhasil dikirim!\n";
     } else {
         echo "❌ Gagal mengirim notifikasi registrasi.\n";
+        echo "   Cek log untuk detail error.\n";
     }
 } else {
     echo "\n⚠️  Tidak ada user untuk test notifikasi registrasi.\n";
 }
 
 echo "\n=== Test Selesai ===\n";
+echo "\nJika semua test berhasil, bot Telegram sudah siap digunakan! 🎉\n";
