@@ -113,7 +113,15 @@
             @if($user->package)
             <div class="credential-item">
                 <div class="credential-label">Paket yang Dipilih:</div>
-                <div class="credential-value" style="text-transform: capitalize;">{{ ucfirst($user->package) }}</div>
+                <div class="credential-value">
+                    @if($user->package == '1_bulan')
+                        Paket 1 Bulan (Rp 50.000/bulan)
+                    @elseif($user->package == '5_bulan')
+                        Paket 5 Bulan (Rp 200.000/5 bulan)
+                    @else
+                        {{ str_replace('_', ' ', ucfirst($user->package)) }}
+                    @endif
+                </div>
             </div>
             @endif
         </div>

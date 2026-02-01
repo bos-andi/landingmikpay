@@ -381,31 +381,39 @@
                     <div class="form-group">
                         <label for="package">Pilih Paket <span style="color: #ef4444;">*</span></label>
                         <div style="display: grid; gap: 1rem; margin-top: 0.5rem;">
-                            <label style="display: flex; align-items: center; gap: 0.75rem; padding: 1rem; border: 2px solid #e2e8f0; border-radius: 8px; cursor: pointer; transition: all 0.3s;" 
+                            <label style="display: flex; align-items: center; gap: 0.75rem; padding: 1.25rem; border: 2px solid #e2e8f0; border-radius: 12px; cursor: pointer; transition: all 0.3s; position: relative;" 
                                    onmouseover="this.style.borderColor='#4D44B5'; this.style.background='#f8fafc';" 
                                    onmouseout="this.style.borderColor='#e2e8f0'; this.style.background='white';">
-                                <input type="radio" name="package" value="basic" id="package_basic" {{ old('package') == 'basic' ? 'checked' : '' }} required style="width: 20px; height: 20px; cursor: pointer;">
+                                <input type="radio" name="package" value="1_bulan" id="package_1_bulan" {{ old('package') == '1_bulan' ? 'checked' : '' }} required style="width: 20px; height: 20px; cursor: pointer;">
                                 <div style="flex: 1;">
-                                    <div style="font-weight: 600; color: #1e293b;">Paket Basic</div>
-                                    <div style="font-size: 0.875rem; color: #64748b;">Fitur dasar untuk bisnis kecil</div>
+                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                                        <div style="font-weight: 700; color: #1e293b; font-size: 1.125rem;">Paket 1 Bulan</div>
+                                        <div style="text-align: right;">
+                                            <div style="font-weight: 800; color: #4D44B5; font-size: 1.5rem;">Rp 50.000</div>
+                                            <div style="font-size: 0.875rem; color: #64748b;">per bulan</div>
+                                        </div>
+                                    </div>
                                 </div>
                             </label>
-                            <label style="display: flex; align-items: center; gap: 0.75rem; padding: 1rem; border: 2px solid #e2e8f0; border-radius: 8px; cursor: pointer; transition: all 0.3s;" 
-                                   onmouseover="this.style.borderColor='#4D44B5'; this.style.background='#f8fafc';" 
-                                   onmouseout="this.style.borderColor='#e2e8f0'; this.style.background='white';">
-                                <input type="radio" name="package" value="premium" id="package_premium" {{ old('package') == 'premium' ? 'checked' : '' }} required style="width: 20px; height: 20px; cursor: pointer;">
-                                <div style="flex: 1;">
-                                    <div style="font-weight: 600; color: #1e293b;">Paket Premium</div>
-                                    <div style="font-size: 0.875rem; color: #64748b;">Fitur lengkap untuk bisnis menengah</div>
-                                </div>
-                            </label>
-                            <label style="display: flex; align-items: center; gap: 0.75rem; padding: 1rem; border: 2px solid #e2e8f0; border-radius: 8px; cursor: pointer; transition: all 0.3s;" 
-                                   onmouseover="this.style.borderColor='#4D44B5'; this.style.background='#f8fafc';" 
-                                   onmouseout="this.style.borderColor='#e2e8f0'; this.style.background='white';">
-                                <input type="radio" name="package" value="enterprise" id="package_enterprise" {{ old('package') == 'enterprise' ? 'checked' : '' }} required style="width: 20px; height: 20px; cursor: pointer;">
-                                <div style="flex: 1;">
-                                    <div style="font-weight: 600; color: #1e293b;">Paket Enterprise</div>
-                                    <div style="font-size: 0.875rem; color: #64748b;">Fitur premium untuk bisnis besar</div>
+                            <label style="display: flex; align-items: center; gap: 0.75rem; padding: 1.25rem; border: 2px solid #f97316; border-radius: 12px; cursor: pointer; transition: all 0.3s; position: relative; background: linear-gradient(135deg, #fff7ed 0%, #ffffff 100%);" 
+                                   onmouseover="this.style.borderColor='#ea580c'; this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(249, 115, 22, 0.2)';" 
+                                   onmouseout="this.style.borderColor='#f97316'; this.style.transform='translateY(0)'; this.style.boxShadow='none';">
+                                <input type="radio" name="package" value="5_bulan" id="package_5_bulan" {{ old('package') == '5_bulan' ? 'checked' : '' }} required style="width: 20px; height: 20px; cursor: pointer;">
+                                <div style="flex: 1; position: relative;">
+                                    <div style="position: absolute; top: -10px; right: -10px; background: #f97316; color: white; padding: 0.25rem 0.75rem; border-radius: 6px; font-size: 0.75rem; font-weight: 700; transform: rotate(12deg);">
+                                        POPULER
+                                    </div>
+                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                                        <div style="font-weight: 700; color: #1e293b; font-size: 1.125rem;">Paket 5 Bulan</div>
+                                        <div style="text-align: right;">
+                                            <div style="text-decoration: line-through; color: #94a3b8; font-size: 1rem; margin-bottom: 0.25rem;">Rp 250.000</div>
+                                            <div style="font-weight: 800; color: #4D44B5; font-size: 1.5rem;">Rp 200.000</div>
+                                            <div style="font-size: 0.875rem; color: #64748b;">5 bulan (hemat Rp 50.000)</div>
+                                        </div>
+                                    </div>
+                                    <div style="background: #fee2e2; color: #dc2626; padding: 0.25rem 0.75rem; border-radius: 6px; font-size: 0.75rem; font-weight: 600; display: inline-block; margin-top: 0.5rem;">
+                                        DISKON 20%
+                                    </div>
                                 </div>
                             </label>
                         </div>

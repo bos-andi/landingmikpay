@@ -339,9 +339,19 @@
                                 </td>
                                 <td>
                                     @if($user->package)
-                                        <span style="background: #e0e7ff; color: #4D44B5; padding: 0.25rem 0.75rem; border-radius: 6px; font-weight: 600; text-transform: capitalize;">
-                                            {{ ucfirst($user->package) }}
-                                        </span>
+                                        @if($user->package == '1_bulan')
+                                            <span style="background: #e0e7ff; color: #4D44B5; padding: 0.25rem 0.75rem; border-radius: 6px; font-weight: 600;">
+                                                Paket 1 Bulan
+                                            </span>
+                                        @elseif($user->package == '5_bulan')
+                                            <span style="background: #fff7ed; color: #f97316; padding: 0.25rem 0.75rem; border-radius: 6px; font-weight: 600;">
+                                                Paket 5 Bulan
+                                            </span>
+                                        @else
+                                            <span style="background: #e0e7ff; color: #4D44B5; padding: 0.25rem 0.75rem; border-radius: 6px; font-weight: 600;">
+                                                {{ str_replace('_', ' ', ucfirst($user->package)) }}
+                                            </span>
+                                        @endif
                                     @else
                                         <span style="color: #cbd5e1;">-</span>
                                     @endif

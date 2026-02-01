@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->enum('package', ['basic', 'premium', 'enterprise'])->default('basic')->after('subdomain');
+            $table->enum('package', ['1_bulan', '5_bulan'])->default('1_bulan')->after('subdomain');
         });
     }
 

@@ -69,7 +69,7 @@ class RegistrasiController extends Controller
             ],
             'phone' => 'nullable|string|max:20',
             'address' => 'nullable|string',
-            'package' => 'required|in:basic,premium,enterprise',
+            'package' => 'required|in:1_bulan,5_bulan',
             'terms' => 'required|accepted'
         ], [
             'name.required' => 'Nama lengkap wajib diisi',
@@ -77,7 +77,7 @@ class RegistrasiController extends Controller
             'email.email' => 'Format email tidak valid',
             'email.unique' => 'Email sudah terdaftar',
             'package.required' => 'Pilih paket wajib diisi',
-            'package.in' => 'Paket yang dipilih tidak valid',
+            'package.in' => 'Paket yang dipilih tidak valid. Pilih Paket 1 Bulan atau Paket 5 Bulan',
             'subdomain.required' => 'Subdomain wajib diisi',
             'subdomain.unique' => 'Subdomain sudah digunakan',
             'subdomain.regex' => 'Format subdomain tidak valid. Hanya huruf kecil, angka, dan tanda hubung',
