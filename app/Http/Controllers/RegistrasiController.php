@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Services\TelegramService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -111,6 +112,15 @@ class RegistrasiController extends Controller
             'phone' => $request->phone,
             'address' => $request->address,
         ]);
+
+        // Kirim notifikasi ke Telegram
+        try {
+            $telegramService = new TelegramService();
+            $telegramService->sendNewRegistrationNotification($user);
+        } catch (\Exception $e) {
+            // Log error tapi jangan gagalkan registrasi
+            \Log::error('Failed to send Telegram notification: ' . $e->getMessage());
+        }
 
         return redirect()->route('registrasi.success')->with('success', 'Registrasi berhasil! Email dan password default akan dikirim ke email Anda dalam 1x24 jam setelah persetujuan admin.');
     }

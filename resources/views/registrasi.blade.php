@@ -258,6 +258,70 @@
         </div>
         
         <div class="registration-wrapper">
+        <div class="terms-section" id="terms-content">
+                <h3>Syarat dan Ketentuan</h3>
+                
+                <h4>1. Ketentuan Umum</h4>
+                <p>
+                    Dengan mendaftar dan menggunakan layanan MikPay, Anda menyetujui untuk mematuhi semua syarat dan ketentuan yang berlaku. 
+                    Syarat dan ketentuan ini dapat diubah sewaktu-waktu tanpa pemberitahuan sebelumnya.
+                </p>
+                
+                <h4>2. Akun Pengguna</h4>
+                <ul>
+                    <li>Anda bertanggung jawab untuk menjaga kerahasiaan informasi akun Anda</li>
+                    <li>Anda wajib memberikan informasi yang akurat dan terkini</li>
+                    <li>Setiap akun akan mendapatkan subdomain unik yang tidak dapat diubah</li>
+                    <li>Subdomain yang dipilih harus mematuhi aturan penamaan yang berlaku</li>
+                </ul>
+                
+                <h4>3. Penggunaan Layanan</h4>
+                <ul>
+                    <li>Layanan MikPay hanya dapat digunakan untuk keperluan bisnis yang sah</li>
+                    <li>Dilarang menggunakan layanan untuk aktivitas ilegal atau melanggar hukum</li>
+                    <li>Anda bertanggung jawab atas semua aktivitas yang terjadi di akun Anda</li>
+                    <li>Kami berhak menangguhkan atau menghentikan akun yang melanggar ketentuan</li>
+                </ul>
+                
+                <h4>4. Pembayaran dan Paket</h4>
+                <ul>
+                    <li>Setiap pengguna baru akan mendapatkan trial gratis selama 7 hari</li>
+                    <li>Setelah trial berakhir, Anda harus berlangganan paket berbayar untuk melanjutkan</li>
+                    <li>Pembayaran dilakukan sesuai dengan paket yang dipilih</li>
+                    <li>Tidak ada pengembalian dana untuk pembayaran yang sudah dilakukan</li>
+                </ul>
+                
+                <h4>5. Data dan Privasi</h4>
+                <ul>
+                    <li>Kami menghormati privasi data pengguna sesuai dengan kebijakan privasi</li>
+                    <li>Data yang Anda input akan disimpan dengan aman</li>
+                    <li>Kami tidak akan membagikan data Anda kepada pihak ketiga tanpa izin</li>
+                    <li>Anda berhak meminta penghapusan data pribadi Anda</li>
+                </ul>
+                
+                <h4>6. Batasan Tanggung Jawab</h4>
+                <p>
+                    MikPay tidak bertanggung jawab atas kerugian yang timbul akibat penggunaan layanan, 
+                    termasuk namun tidak terbatas pada kehilangan data, gangguan bisnis, atau kerugian finansial lainnya.
+                </p>
+                
+                <h4>7. Perubahan Layanan</h4>
+                <p>
+                    Kami berhak mengubah, menangguhkan, atau menghentikan layanan kapan saja tanpa pemberitahuan sebelumnya. 
+                    Perubahan fitur atau layanan tidak menjadi alasan untuk pengembalian dana.
+                </p>
+                
+                <h4>8. Kontak</h4>
+                <p>
+                    Jika Anda memiliki pertanyaan mengenai syarat dan ketentuan ini, silakan hubungi kami melalui email atau kontak yang tersedia.
+                </p>
+                
+                <p style="margin-top: 2rem; font-weight: 600; color: #1e293b;">
+                    Dengan mencentang kotak persetujuan, Anda menyatakan telah membaca, memahami, dan menyetujui semua syarat dan ketentuan di atas.
+                </p>
+            </div>
+
+
             <div class="form-section">
                 <form id="registrationForm" method="POST" action="{{ route('registrasi.store') }}">
                     @csrf
@@ -330,68 +394,7 @@
                 </form>
             </div>
             
-            <div class="terms-section" id="terms-content">
-                <h3>Syarat dan Ketentuan</h3>
-                
-                <h4>1. Ketentuan Umum</h4>
-                <p>
-                    Dengan mendaftar dan menggunakan layanan MikPay, Anda menyetujui untuk mematuhi semua syarat dan ketentuan yang berlaku. 
-                    Syarat dan ketentuan ini dapat diubah sewaktu-waktu tanpa pemberitahuan sebelumnya.
-                </p>
-                
-                <h4>2. Akun Pengguna</h4>
-                <ul>
-                    <li>Anda bertanggung jawab untuk menjaga kerahasiaan informasi akun Anda</li>
-                    <li>Anda wajib memberikan informasi yang akurat dan terkini</li>
-                    <li>Setiap akun akan mendapatkan subdomain unik yang tidak dapat diubah</li>
-                    <li>Subdomain yang dipilih harus mematuhi aturan penamaan yang berlaku</li>
-                </ul>
-                
-                <h4>3. Penggunaan Layanan</h4>
-                <ul>
-                    <li>Layanan MikPay hanya dapat digunakan untuk keperluan bisnis yang sah</li>
-                    <li>Dilarang menggunakan layanan untuk aktivitas ilegal atau melanggar hukum</li>
-                    <li>Anda bertanggung jawab atas semua aktivitas yang terjadi di akun Anda</li>
-                    <li>Kami berhak menangguhkan atau menghentikan akun yang melanggar ketentuan</li>
-                </ul>
-                
-                <h4>4. Pembayaran dan Paket</h4>
-                <ul>
-                    <li>Setiap pengguna baru akan mendapatkan trial gratis selama 7 hari</li>
-                    <li>Setelah trial berakhir, Anda harus berlangganan paket berbayar untuk melanjutkan</li>
-                    <li>Pembayaran dilakukan sesuai dengan paket yang dipilih</li>
-                    <li>Tidak ada pengembalian dana untuk pembayaran yang sudah dilakukan</li>
-                </ul>
-                
-                <h4>5. Data dan Privasi</h4>
-                <ul>
-                    <li>Kami menghormati privasi data pengguna sesuai dengan kebijakan privasi</li>
-                    <li>Data yang Anda input akan disimpan dengan aman</li>
-                    <li>Kami tidak akan membagikan data Anda kepada pihak ketiga tanpa izin</li>
-                    <li>Anda berhak meminta penghapusan data pribadi Anda</li>
-                </ul>
-                
-                <h4>6. Batasan Tanggung Jawab</h4>
-                <p>
-                    MikPay tidak bertanggung jawab atas kerugian yang timbul akibat penggunaan layanan, 
-                    termasuk namun tidak terbatas pada kehilangan data, gangguan bisnis, atau kerugian finansial lainnya.
-                </p>
-                
-                <h4>7. Perubahan Layanan</h4>
-                <p>
-                    Kami berhak mengubah, menangguhkan, atau menghentikan layanan kapan saja tanpa pemberitahuan sebelumnya. 
-                    Perubahan fitur atau layanan tidak menjadi alasan untuk pengembalian dana.
-                </p>
-                
-                <h4>8. Kontak</h4>
-                <p>
-                    Jika Anda memiliki pertanyaan mengenai syarat dan ketentuan ini, silakan hubungi kami melalui email atau kontak yang tersedia.
-                </p>
-                
-                <p style="margin-top: 2rem; font-weight: 600; color: #1e293b;">
-                    Dengan mencentang kotak persetujuan, Anda menyatakan telah membaca, memahami, dan menyetujui semua syarat dan ketentuan di atas.
-                </p>
-            </div>
+            
         </div>
     </div>
     

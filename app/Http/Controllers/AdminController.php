@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Mail\UserCredentialsMail;
+use App\Services\TelegramService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -34,8 +35,19 @@ class AdminController extends Controller
         ]);
 
         $user = User::findOrFail($id);
+        $oldStatus = $user->status;
         $user->status = $request->status;
         $user->save();
+
+        // Kirim notifikasi Telegram jika user diaktifkan
+        if ($request->status === 'active' && $oldStatus !== 'active') {
+            try {
+                $telegramService = new TelegramService();
+                $telegramService->sendUserActivatedNotification($user);
+            } catch (\Exception $e) {
+                \Log::error('Failed to send Telegram notification: ' . $e->getMessage());
+            }
+        }
 
         return response()->json([
             'success' => true,
