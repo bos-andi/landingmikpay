@@ -61,7 +61,7 @@
             font-weight: 500;
         }
         
-        .nav-links a:hover {
+        .nav-links a:hover, .nav-links a.active {
             color: #4D44B5;
         }
         
@@ -297,6 +297,8 @@
             <span>MikPay Admin</span>
         </a>
         <div class="nav-links">
+            <a href="{{ route('admin.users') }}" class="active">Kelola Users</a>
+            <a href="{{ route('admin.settings') }}">Settings</a>
             <span>Selamat datang, {{ auth()->user()->name }}</span>
             <a href="{{ route('logout') }}">Logout</a>
         </div>
