@@ -892,7 +892,7 @@
                 </p>
                 <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem;">
                     <div style="background: rgba(255,255,255,0.2); padding: 1rem 2rem; border-radius: 12px; backdrop-filter: blur(10px);">
-                        <div style="font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem;">7 Hari</div>
+                        <div style="font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem;">5 Hari</div>
                         <div style="opacity: 0.9;">Trial Gratis</div>
                     </div>
                     <div style="background: rgba(255,255,255,0.2); padding: 1rem 2rem; border-radius: 12px; backdrop-filter: blur(10px);">

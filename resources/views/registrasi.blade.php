@@ -285,10 +285,10 @@
                 
                 <h4>4. Pembayaran dan Paket</h4>
                 <ul>
-                    <li>Setiap pengguna baru akan mendapatkan trial gratis selama 7 hari</li>
-                    <li>Setelah trial berakhir, Anda harus berlangganan paket berbayar untuk melanjutkan</li>
+                    <li>Setelah periode tertentu, Anda harus berlangganan paket berbayar untuk melanjutkan</li>
                     <li>Pembayaran dilakukan sesuai dengan paket yang dipilih</li>
                     <li>Tidak ada pengembalian dana untuk pembayaran yang sudah dilakukan</li>
+                    <li>Voucher dapat digunakan untuk mendapatkan diskon atau paket khusus</li>
                 </ul>
                 
                 <h4>5. Data dan Privasi</h4>
@@ -374,6 +374,17 @@
                         <label for="address">Alamat</label>
                         <input type="text" id="address" name="address" value="{{ old('address') }}" placeholder="Alamat lengkap">
                         @error('address')
+                            <div class="error-message">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="voucher_code">Kode Voucher (Opsional)</label>
+                        <input type="text" id="voucher_code" name="voucher_code" value="{{ old('voucher_code') }}" placeholder="Masukkan kode voucher jika ada">
+                        <small style="color: #64748b; font-size: 0.875rem; display: block; margin-top: 0.25rem;">
+                            Gunakan kode voucher untuk mendapatkan diskon atau paket khusus
+                        </small>
+                        @error('voucher_code')
                             <div class="error-message">{{ $message }}</div>
                         @enderror
                     </div>

@@ -26,4 +26,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/admin/users/{id}/status', [AdminController::class, 'updateStatus'])->name('admin.users.status');
     Route::post('/admin/users/{id}/send-credentials', [AdminController::class, 'sendCredentials'])->name('admin.users.send-credentials');
     Route::delete('/admin/users/{id}', [AdminController::class, 'destroy'])->name('admin.users.destroy');
+    
+    // Settings
+    Route::get('/admin/settings', [App\Http\Controllers\SettingsController::class, 'index'])->name('admin.settings');
+    Route::post('/admin/settings', [App\Http\Controllers\SettingsController::class, 'update'])->name('admin.settings.update');
 });

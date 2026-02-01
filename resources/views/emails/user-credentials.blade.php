@@ -102,7 +102,7 @@
             </div>
             <div class="credential-item">
                 <div class="credential-label">Password Default:</div>
-                <div class="credential-value">{{ $password }}</div>
+                <div class="credential-value">1234</div>
             </div>
             @if($user->subdomain)
             <div class="credential-item">
@@ -125,7 +125,7 @@
         
         <div style="text-align: center;">
             @if($user->subdomain)
-                <a href="https://{{ $user->subdomain }}.mikpay.link/login" class="button">Login ke MikPay</a>
+                <a href="https://{{ $user->subdomain }}.mikpay.link" class="button">Login ke MikPay</a>
             @else
                 <a href="{{ url('/login') }}" class="button">Login ke MikPay</a>
             @endif
@@ -134,7 +134,7 @@
         <div class="content">
             <h3 style="margin-top: 0;">Informasi Penting:</h3>
             <ul>
-                <li>Anda mendapatkan <strong>trial gratis 7 hari</strong> untuk semua fitur premium</li>
+                <li>Anda mendapatkan <strong>trial gratis 5 hari</strong> untuk semua fitur premium</li>
                 <li>Setelah trial berakhir, pilih paket langganan untuk melanjutkan</li>
                 <li>Jika ada pertanyaan, hubungi kami di <strong>admin@mikpay.link</strong></li>
             </ul>

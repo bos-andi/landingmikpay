@@ -114,7 +114,7 @@
             <p style="margin-left: 1.5rem;">• Password default untuk login</p>
             <p style="margin-left: 1.5rem;">• Link akses subdomain Anda</p>
             <p>3. Login menggunakan email dan password yang dikirim melalui email</p>
-            <p>4. Nikmati trial gratis 7 hari untuk semua fitur premium</p>
+            <p>4. Nikmati trial gratis 5 hari untuk semua fitur premium</p>
             <p style="margin-top: 1rem; color: #f59e0b; font-weight: 600;">
                 ⏰ Email akan dikirim dalam maksimal 1x24 jam setelah persetujuan admin
             </p>

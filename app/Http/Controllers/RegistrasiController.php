@@ -69,6 +69,7 @@ class RegistrasiController extends Controller
             ],
             'phone' => 'nullable|string|max:20',
             'address' => 'nullable|string',
+            'voucher_code' => 'nullable|string|max:50',
             'terms' => 'required|accepted'
         ], [
             'name.required' => 'Nama lengkap wajib diisi',
@@ -113,6 +114,7 @@ class RegistrasiController extends Controller
                 'email' => $request->email,
                 'password' => Hash::make($defaultPassword),
                 'subdomain' => strtolower($request->subdomain),
+                'voucher_code' => $request->voucher_code ? strtoupper(trim($request->voucher_code)) : null,
                 'role' => 'user',
                 'status' => 'pending',
                 'phone' => $request->phone,
