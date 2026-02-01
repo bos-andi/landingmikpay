@@ -49,6 +49,7 @@ class SettingsController extends Controller
                     'value' => $value,
                     'type' => is_numeric($value) ? 'integer' : 'string',
                     'updated_at' => now(),
+                    'created_at' => DB::raw('COALESCE(created_at, NOW())'),
                 ]
             );
         }
