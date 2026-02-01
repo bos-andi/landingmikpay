@@ -94,24 +94,52 @@ class RegistrasiController extends Controller
             return back()->withErrors(['subdomain' => 'Subdomain ini tidak dapat digunakan'])->withInput();
         }
 
-        // Cek apakah subdomain sudah digunakan
-        if (User::where('subdomain', $request->subdomain)->exists()) {
+        // Double check: Cek apakah email sudah digunakan
+        if (User::where('email', $request->email)->exists()) {
+            return back()->withErrors(['email' => 'Email sudah terdaftar. Silakan gunakan email lain atau hubungi admin jika ini adalah email Anda.'])->withInput();
+        }
+
+        // Double check: Cek apakah subdomain sudah digunakan
+        if (User::where('subdomain', strtolower($request->subdomain))->exists()) {
             return back()->withErrors(['subdomain' => 'Subdomain sudah digunakan'])->withInput();
         }
 
         // Password default untuk semua user baru
         $defaultPassword = '1234';
         
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($defaultPassword),
-            'subdomain' => strtolower($request->subdomain),
-            'role' => 'user',
-            'status' => 'pending',
-            'phone' => $request->phone,
-            'address' => $request->address,
-        ]);
+        try {
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($defaultPassword),
+                'subdomain' => strtolower($request->subdomain),
+                'role' => 'user',
+                'status' => 'pending',
+                'phone' => $request->phone,
+                'address' => $request->address,
+            ]);
+        } catch (\Illuminate\Database\QueryException $e) {
+            // Handle duplicate entry error
+            if ($e->getCode() == 23000) {
+                $errorCode = $e->errorInfo[1] ?? null;
+                
+                if ($errorCode == 1062) {
+                    // Duplicate entry
+                    $errorMessage = $e->getMessage();
+                    
+                    if (strpos($errorMessage, 'users_email_unique') !== false) {
+                        return back()->withErrors(['email' => 'Email sudah terdaftar. Silakan gunakan email lain atau hubungi admin jika ini adalah email Anda.'])->withInput();
+                    } elseif (strpos($errorMessage, 'users_subdomain_unique') !== false) {
+                        return back()->withErrors(['subdomain' => 'Subdomain sudah digunakan. Silakan pilih subdomain lain.'])->withInput();
+                    } else {
+                        return back()->withErrors(['email' => 'Data yang Anda masukkan sudah terdaftar. Silakan cek email atau subdomain Anda.'])->withInput();
+                    }
+                }
+            }
+            
+            // Re-throw jika bukan duplicate entry error
+            throw $e;
+        }
 
         // Kirim notifikasi ke Telegram
         try {
