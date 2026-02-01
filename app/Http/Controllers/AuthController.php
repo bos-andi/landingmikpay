@@ -20,6 +20,18 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
+        // Cek apakah user ada dan statusnya active
+        $user = \App\Models\User::where('email', $credentials['email'])->first();
+        
+        if ($user) {
+            // Cek status user
+            if ($user->status !== 'active') {
+                return back()->withErrors([
+                    'email' => 'Akun Anda belum diaktifkan. Silakan hubungi admin.',
+                ])->withInput($request->only('email'));
+            }
+        }
+
         if (Auth::attempt($credentials, $request->filled('remember'))) {
             $request->session()->regenerate();
             
