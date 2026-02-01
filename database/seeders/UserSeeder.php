@@ -30,7 +30,7 @@ class UserSeeder extends Seeder
             ['email' => 'user@andidev.id'],
             [
                 'name' => 'User Test',
-                'password' => Hash::make('andidev.id'),
+                'password' => Hash::make('mikpay1234'),
                 'role' => 'user',
                 'status' => 'active',
                 'subdomain' => 'test-user',

@@ -113,11 +113,22 @@
         </div>
         
         <div class="warning">
-            <strong>⚠️ Penting:</strong> Untuk keamanan, segera ubah password default setelah login pertama kali.
+            <strong>⚠️ Penting:</strong> 
+            <ul style="margin: 10px 0; padding-left: 20px;">
+                <li>Password default Anda adalah: <strong>1234</strong></li>
+                <li>Untuk keamanan, segera ubah password setelah login pertama kali</li>
+                @if($user->subdomain)
+                <li>Login menggunakan subdomain: <strong>{{ $user->subdomain }}.mikpay.link</strong></li>
+                @endif
+            </ul>
         </div>
         
         <div style="text-align: center;">
-            <a href="{{ url('/login') }}" class="button">Login ke MikPay</a>
+            @if($user->subdomain)
+                <a href="https://{{ $user->subdomain }}.mikpay.link/login" class="button">Login ke MikPay</a>
+            @else
+                <a href="{{ url('/login') }}" class="button">Login ke MikPay</a>
+            @endif
         </div>
         
         <div class="content">

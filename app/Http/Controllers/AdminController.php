@@ -63,14 +63,15 @@ class AdminController extends Controller
 
         $user = User::findOrFail($id);
 
-        // Generate password baru jika belum ada atau jika diminta
+        // Password default atau custom dari request
         $password = $request->input('password');
         if (empty($password)) {
-            $password = Str::random(12); // Generate random password 12 karakter
+            $password = '1234'; // Password default untuk semua user
         }
 
         // Update password user
         $user->password = Hash::make($password);
+        $user->status = 'active'; // Aktifkan user saat kirim email
         $user->save();
 
         try {

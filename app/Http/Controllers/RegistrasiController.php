@@ -99,8 +99,8 @@ class RegistrasiController extends Controller
             return back()->withErrors(['subdomain' => 'Subdomain sudah digunakan'])->withInput();
         }
 
-        // Generate password default sementara (akan diupdate saat admin kirim email)
-        $defaultPassword = Str::random(12);
+        // Password default untuk semua user baru
+        $defaultPassword = '1234';
         
         $user = User::create([
             'name' => $request->name,
