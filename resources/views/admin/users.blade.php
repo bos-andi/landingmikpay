@@ -318,6 +318,7 @@
                             <th>Nama</th>
                             <th>Email</th>
                             <th>Subdomain</th>
+                            <th>Paket</th>
                             <th>No. Telepon</th>
                             <th>Status</th>
                             <th>Tanggal Daftar</th>
@@ -332,6 +333,15 @@
                                 <td>
                                     @if($user->subdomain)
                                         <strong>{{ $user->subdomain }}.mikpay.link</strong>
+                                    @else
+                                        <span style="color: #cbd5e1;">-</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    @if($user->package)
+                                        <span style="background: #e0e7ff; color: #4D44B5; padding: 0.25rem 0.75rem; border-radius: 6px; font-weight: 600; text-transform: capitalize;">
+                                            {{ ucfirst($user->package) }}
+                                        </span>
                                     @else
                                         <span style="color: #cbd5e1;">-</span>
                                     @endif
